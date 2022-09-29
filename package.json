@@ -4,7 +4,8 @@
   "description": "A simple Express reverse proxy as explained in my YouTube video @ https://www.youtube.com/watch?v=5jPoTpXpIH4&t=796s",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "author": "Craig Humphreys",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "express": "^4.17.1"
   },
   "dependencies": {
+    "nodemon": "^2.0.20",
     "pluspagos-aes-encryption": "^1.0.0"
   }
 }
