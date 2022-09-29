@@ -173,30 +173,27 @@ app.get('/pay', function (req, res) {
 })
 
 app.get('/tarjetaToken', function (req, res) {
-    function randomIntFromInterval(min, max) { // min and max included 
-        return Math.floor(Math.random() * (max - min + 1) + min)
-    }
-    const txID = String(randomIntFromInterval(1, 100000000000000))
-    console.log(txID, "txid")
+  
 
     const endpoint = 'https://sandboxpp.asjservicios.com.ar:8082/v1/tokens'
 
-
+    const txId = req.query.nFactura
     const totalOrden = req.query.total
     const iPuser = req.query.iPuser
+  
     axios({
         method: 'post',
         url: endpoint,
         headers: {
             ContentType: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2NjQzMDMwNDYsImV4cCI6MTY2NDMxNzQ0NiwiaXNzIjoiaHR0cDovL0FTSlBBR09TU0IwMVA6ODA4Ni8iLCJhdWQiOiJodHRwOi8vQVNKUEFHT1NTQjAxUDo4MDgyLyIsIk5vbWJyZSI6IkZPTkRPIERFIENSRURJVE9TIFNBUEVNIiwiQ29tZXJjaW9JZCI6MTYyNzF9.XcdIFD381BJRQNx4KDzRFktcVgypVNCTf43su1jd2F4'
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2NjQ0Njk5MzUsImV4cCI6MTY2NDQ4NDMzNSwiaXNzIjoiaHR0cDovL0FTSlBBR09TU0IwMVA6ODA4Ni8iLCJhdWQiOiJodHRwOi8vQVNKUEFHT1NTQjAxUDo4MDgyLyIsIk5vbWJyZSI6IkZPTkRPIERFIENSRURJVE9TIFNBUEVNIiwiQ29tZXJjaW9JZCI6MTYyNzF9.UjaxtfDWDZFNZumLT5oMVJaEmP8Vbi6F5LJHsyJUECw'
         },
         data: {
             Comercio: '022ac921-91f3-4540-b0c2-d7b989f16d55',
             SucursalComercio: null,
             Productos: '',
             TotalOperacion: totalOrden,
-            TransaccionComercioId: txID,
+            TransaccionComercioId: txId,
             Ip: iPuser
         }
     }).then(response => {
